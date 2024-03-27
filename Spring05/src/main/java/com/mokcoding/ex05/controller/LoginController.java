@@ -9,13 +9,8 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequestMapping("/example")
 @Log4j
-public class ExampleController {
-	
-	@GetMapping("/main")
-	public void main() {
-		log.info("main()");
-	}
-	
+public class LoginController {
+		
 	@GetMapping("/login")
 	public void login() {
 		log.info("login");

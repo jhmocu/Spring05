@@ -31,5 +31,6 @@ public class ServletConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
 	
+	
 
 } // end ServletConfig
