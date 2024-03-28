@@ -16,13 +16,21 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+	// HttpSecurity 객체를 통해 HTTP 보안을 구성
 	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		
-		http.authorizeRequests().antMatchers("/example/main").permitAll().antMatchers("/example/admin")
-				.access("hasRole('ROLE_ADMIN')").antMatchers("/example/member").access("hasRole('ROLE_MEMBER')");
+		// HTTP 보안 구성
+		httpSecurity
+		.authorizeRequests() // 요청에 대한 권한 부여
+		// /example/main에 대한 모든 사용자 접근을 허용
+		.antMatchers("/example/main").permitAll() 
+		// /example/admin에 대한 ADMIN 사용자 접근을 허용
+		.antMatchers("/example/admin").access("hasRole('ROLE_ADMIN')")  
+		// /example/admin에 대한 MEMBER 사용자 접근을 허용
+		.antMatchers("/example/member").access("hasRole('ROLE_MEMBER')");
 		
-		http.formLogin();
+		httpSecurity.formLogin();
 	}
 
 	@Override
