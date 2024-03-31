@@ -29,9 +29,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// permitAll() : 모든 사용자 접근
 		// access() : 특정 권한을 가진 사용자 접근
 		// hasRole('ROLE_XXX') : XXX 등급으로 권한 설정
-		
 	
-		httpSecurity.formLogin(); // 기본 formLogin 기능 사용
+		// 접근 제한 경로 설정
+		httpSecurity.exceptionHandling().accessDeniedPage("/access/accessDenied");
+		
+		httpSecurity.formLogin().loginPage("/access/login"); // 커스텀 로그인 url 설정
+		
+		httpSecurity.csrf().disable(); // csrf 설정
+		
+		httpSecurity.logout().logoutUrl("/access/logout") // logout url 설정
+		.invalidateHttpSession(true); // 세션 무효화 설정
 	}
 
 	// AuthenticationManagerBuilder 객체를 통해 인증 기능을 구성
@@ -46,5 +53,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// noop : 암호 인코딩을 설정하지 않음을 의미
 
 	}
+	
 
 }

@@ -1,10 +1,12 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>member</title>
+<meta charset="UTF-8">
+<title>Member</title>
 </head>
 <body>
-    <h2>member</h2>
-    member
+    <h2>MEMBER 권한만 접근 가능한 member 페이지</h2>
 </body>
 </html>
