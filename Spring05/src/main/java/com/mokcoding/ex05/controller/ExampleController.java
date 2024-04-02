@@ -13,17 +13,18 @@ public class ExampleController {
 		
 	@GetMapping("/main")
 	public void main() {
-		log.info("main");
+		log.info("main()");
 	}
 	
 	@GetMapping("/member")
 	public void member() {
-		log.info("member");
+		log.info("member()");
 	}
 	
 	@GetMapping("/admin")
 	public void admin() {
-		log.info("admin");
+		log.info("admin()");
 	}
+	
 	
 }

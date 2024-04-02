@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Admin</title>
 </head>
-<body>
-
+<body>    
+	<h2>ADMIN 권한만 접근 가능한 admin 페이지</h2>
+	<a href="../access/logout">로그아웃</a>
 </body>
 </html>

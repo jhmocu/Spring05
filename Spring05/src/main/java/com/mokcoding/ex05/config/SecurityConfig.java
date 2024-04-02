@@ -11,15 +11,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-	// HttpSecurity 객체를 통해 HTTP 보안을 구성
+ 
+	// HttpSecurity 객체를 통해 HTTP 보안 기능을 구성
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		
-		// HTTP 보안 구성
 		httpSecurity
-		.authorizeRequests() // 요청에 대한 권한 부여
-		// /example/main에  대한 모든 사용자 접근을 허용
+		.authorizeRequests()
+		// /example/main에 대한 모든 사용자 접근을 허용
 		.antMatchers("/example/main").permitAll() 
 		// /example/admin에 대한 ADMIN 사용자 접근을 허용
 		.antMatchers("/example/admin").access("hasRole('ROLE_ADMIN')")  
@@ -30,22 +29,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// permitAll() : 모든 사용자 접근
 		// access() : 특정 권한을 가진 사용자 접근
 		// hasRole('ROLE_XXX') : XXX 등급으로 권한 설정
-		
 	
-		httpSecurity.formLogin(); // 기본 formLogin 기능 사용
+		// 접근 제한 경로 설정
+		httpSecurity.exceptionHandling().accessDeniedPage("/access/accessDenied");
+		
+		httpSecurity.formLogin().loginPage("/access/login"); // 커스텀 로그인 url 설정
+		
+		httpSecurity.csrf().disable(); // csrf 설정
+		
+		httpSecurity.logout().logoutUrl("/access/logout") // logout url 설정
+		.invalidateHttpSession(true); // 세션 무효화 설정
 	}
 
-	// AuthenticationManagerBuilder 객체를 통해 인증을 구성
+	// AuthenticationManagerBuilder 객체를 통해 인증 기능을 구성
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.inMemoryAuthentication() // 애플리케이션 메모리에 사용자 정보 저장
-		// user : member1, password : 1234, role : MEMBER
-		.withUser("member1").password("{noop}1234").roles("MEMBER") 
-		// user : admin1, password : 1234, role : ADMIN
+//		 user : member1, password : 1234, role : MEMBER
+		.withUser("member1").password("{noop}1234").roles("MEMBER")
+//		 user : admin1, password : 1234, role : ADMIN
 		.and().withUser("admin1").password("{noop}1234").roles("ADMIN");
 		
 		// noop : 암호 인코딩을 설정하지 않음을 의미
 
 	}
+	
 
 }
