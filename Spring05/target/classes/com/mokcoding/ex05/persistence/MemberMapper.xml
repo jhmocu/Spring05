@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mokcoding.ex05.persistence.MemberMapper">
+
+	<resultMap type="com.mokcoding.ex05.domain.Member"
+		id="memberResultMap">
+		
+		<id property="memberId" column="MEMBER_ID" /> 
+		<result property="memberPw" column="MEMBER_PW" />
+		<result property="memberName" column="MEMBER_NAME" />
+		<result property="regDate" column="REG_DATE" />
+		<result property="enabled" column="ENABLED" />
+		<result property="attachExtension" column="ATTACH_EXTENSION"/>
+		<result property="attachDateCreated" column="ATTACH_DATE_CREATED"/>
+	</resultMap>
+	
+	<resultMap type="com.mokcoding.ex05.domain.Auth"
+		id="authResultMap">
+		
+		<id property="memberId" column="MEMBER_ID" /> 
+		<result property="auth" column="AUTH" />
+	</resultMap>
+
+	<insert id="insert">
+		INSERT INTO MEMBER 
+		(MEMBER_ID, MEMBER_PW, MEMBER_NAME)
+		VALUES (#{memberId}, #{memberPw}, #{memberName})
+
+	</insert>
+
+	<select id="selectByAttachId" resultMap="attachResultMap">
+		SELECT * FROM ATTACH 
+		WHERE ATTACH_ID = #{attachId}
+	</select>
+		
+
+</mapper>
+
+
+

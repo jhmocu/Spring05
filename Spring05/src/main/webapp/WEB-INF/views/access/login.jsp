@@ -23,10 +23,10 @@
         <input type="password" name="password" ><br>
         <!-- 로그인 버튼 -->
         <input type="submit" value="로그인">		
+	    <!-- CSRF 토큰 -->
+	    <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
     </form>
     
-    <!-- CSRF 토큰 -->
-    <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 
 </body>
 </html>
