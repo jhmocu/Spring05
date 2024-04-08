@@ -34,13 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		httpSecurity.exceptionHandling().accessDeniedPage("/access/accessDenied");
 		
 		httpSecurity.formLogin().loginPage("/access/login"); // 커스텀 로그인 url 설정
-		
-<<<<<<< HEAD
-//		httpSecurity.csrf().disable(); // csrf 설정
-=======
-		httpSecurity.csrf().disable(); // csrf 비활성화 설정
->>>>>>> refs/remotes/origin/master
-		
+				
 		httpSecurity.logout().logoutUrl("/access/logout") // logout url 설정
 		.invalidateHttpSession(true); // 세션 무효화 설정
 		
