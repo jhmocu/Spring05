@@ -13,24 +13,22 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class AccessController {
 
-	// 접근 거부 페이지를 처리하는 메서드
+	// 접근 제한 요청을 처리하여 jsp 페이지를 호출하는 메서드
 	@GetMapping("/accessDenied")
 	public void accessDenied(Authentication auth, Model model) {
-	    // 로그를 출력하여 메서드가 호출되었음을 확인
+	    // Authentication : 현재 사용자의 인증 정보를 갖고 있음
 	    log.info("accessDenied()");
-	    // 현재 인증 정보를 로그로 출력
 	    log.info(auth);
-	    
-	    // 메시지를 모델에 추가하여 JSP 파일에서 사용할 수 있도록 함
+
 	    model.addAttribute("msg", "권한이 없습니다.");
 	}
 	
-	// 로그인 페이지 요청을 처리하는 메서드
+	// 로그인 페이지 요청을 처리하여 jsp 페이지를 호출하는 메서드
 	@GetMapping("/login")
 	public void loginGET(String error, String logout, Model model) {
-	    // 로그 메시지 출력
+	    // error : 에러 발생시 정보 저장
+		// logout : 로그아웃 정보 저장
 	    log.info("loginGET()");
-	    // 에러 및 로그아웃 정보를 로그로 출력
 	    log.info("error : " + error);
 	    log.info("logout : " + logout);
 	    
@@ -44,11 +42,5 @@ public class AccessController {
 	        model.addAttribute("logoutMsg", "로그아웃 되었습니다!");
 	    }
 	}
-	
-	@GetMapping("/logout")
-	public void logoutGET() {
-		log.info("logoutGET()");
-	}
-	
 	
 }

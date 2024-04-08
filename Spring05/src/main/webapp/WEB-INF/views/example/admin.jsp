@@ -8,6 +8,9 @@
 </head>
 <body>    
 	<h2>ADMIN 권한만 접근 가능한 admin 페이지</h2>
-	<a href="../access/logout">로그아웃</a>
+	<form action="../access/logout" method="POST">
+		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+		<input type="submit" value="로그아웃">
+	</form>
 </body>
 </html>
