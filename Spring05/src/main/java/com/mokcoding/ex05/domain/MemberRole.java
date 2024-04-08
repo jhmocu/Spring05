@@ -9,7 +9,8 @@ import lombok.ToString;
 @Getter 
 @Setter
 @ToString 
-public class Auth {
+public class MemberRole {
+	private int roleId;
 	private String memberId;
-	private String auth;
+	private String roleName;
 }

@@ -13,28 +13,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="memberName" column="MEMBER_NAME" />
 		<result property="regDate" column="REG_DATE" />
 		<result property="enabled" column="ENABLED" />
-		<result property="attachExtension" column="ATTACH_EXTENSION"/>
-		<result property="attachDateCreated" column="ATTACH_DATE_CREATED"/>
 	</resultMap>
 	
-	<resultMap type="com.mokcoding.ex05.domain.Auth"
-		id="authResultMap">
-		
-		<id property="memberId" column="MEMBER_ID" /> 
-		<result property="auth" column="AUTH" />
+	<resultMap type="com.mokcoding.ex05.domain.MemberRole"
+		id="roleResultMap">
+		<id property="roleId" column="ROLE_ID" /> 
+		<result property="memberId" column="MEMBER_ID" />
+		<result property="roleName" column="ROLE_NAME" />
 	</resultMap>
 
-	<insert id="insert">
+	<insert id="insertMember">
 		INSERT INTO MEMBER 
 		(MEMBER_ID, MEMBER_PW, MEMBER_NAME)
 		VALUES (#{memberId}, #{memberPw}, #{memberName})
 
 	</insert>
 
-	<select id="selectByAttachId" resultMap="attachResultMap">
-		SELECT * FROM ATTACH 
-		WHERE ATTACH_ID = #{attachId}
-	</select>
+	<insert id="insertMemberRole">
+		INSERT INTO MEMBER_ROLE
+		(ROLE_ID, MEMBER_ID, ROLE_NAME)
+		VALUES (ROLE_SEQ.NEXTVAL, #{memberId}, #{roleName})
+	</insert>
 		
 
 </mapper>
