@@ -18,11 +18,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		httpSecurity
 		.authorizeRequests()
-		// /example/main에 대한 모든 사용자 접근을 허용
+		// "/example/main" URL에 대한 모든 사용자 접근을 허용
 		.antMatchers("/example/main").permitAll() 
-		// /example/admin에 대한 ADMIN 사용자 접근을 허용
+		// "/example/admin" URL에 대한 ADMIN 사용자 접근을 허용
 		.antMatchers("/example/admin").access("hasRole('ROLE_ADMIN')")  
-		// /example/admin에 대한 MEMBER 사용자 접근을 허용
+		// "/example/admin" URL에 대한 MEMBER 사용자 접근을 허용
 		.antMatchers("/example/member").access("hasRole('ROLE_MEMBER')");
 		
 		// antMatchers(pattern) : 특정 url 패턴에 맞는 경로 매핑
@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		httpSecurity.formLogin().loginPage("/access/login"); // 커스텀 로그인 url 설정
 		
-		httpSecurity.csrf().disable(); // csrf 설정
+//		httpSecurity.csrf().disable(); // csrf 설정
 		
 		httpSecurity.logout().logoutUrl("/access/logout") // logout url 설정
 		.invalidateHttpSession(true); // 세션 무효화 설정

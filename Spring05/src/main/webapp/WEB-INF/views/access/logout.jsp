@@ -11,7 +11,7 @@
 	<h1>로그아웃 페이지</h1>
 	
 	<form action="../access/logout" method="POST">
-		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+		<%-- <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"> --%>
 		<input type="submit" value="로그아웃">
 	</form>
 </body>
