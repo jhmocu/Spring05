@@ -1,4 +1,4 @@
-package com.mokcoding.ex05.service;
+package com.mokcoding.ex05.security;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 
 import com.mokcoding.ex05.domain.Member;
 import com.mokcoding.ex05.domain.MemberRole;
@@ -18,6 +19,7 @@ import com.mokcoding.ex05.persistence.MemberMapper;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
+@Component
 public class CustomUserDetailService implements UserDetailsService{
 	
 	@Autowired
