@@ -34,6 +34,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(ROLE_ID, MEMBER_ID, ROLE_NAME)
 		VALUES (ROLE_SEQ.NEXTVAL, #{memberId}, #{roleName})
 	</insert>
+	
+	<select id="selectMemberByMemberId" resultMap="memberResultMap">
+		SELECT * FROM MEMBER 
+		WHERE MEMBER_ID = #{memberId}
+	</select>
+	
+	<select id="selectRoleByMemberId" resultMap="roleResultMap">
+		SELECT * FROM MEMBER_ROLE
+		WHERE MEMEBER_ID = #{memberId}
+	</select>
 		
 
 </mapper>

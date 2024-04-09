@@ -9,4 +9,6 @@ import com.mokcoding.ex05.domain.MemberRole;
 public interface MemberMapper {
 	int insertMember(Member member);
 	int insertMemberRole(MemberRole memberRole);
+	Member selectMemberByMemberId(String memberId);
+	MemberRole selectRoleByMemberId(String memberId);
 }
