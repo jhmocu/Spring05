@@ -26,12 +26,6 @@
 	    <!-- CSRF 토큰 -->
 	    <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
     </form>
-    
-<<<<<<< HEAD
-    <!-- CSRF 토큰 -->
-   <%--  <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"> --%>
-=======
->>>>>>> refs/remotes/origin/master
 
 </body>
 </html>

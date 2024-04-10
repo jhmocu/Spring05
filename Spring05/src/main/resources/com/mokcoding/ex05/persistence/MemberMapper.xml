@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="selectRoleByMemberId" resultMap="roleResultMap">
 		SELECT * FROM MEMBER_ROLE
-		WHERE MEMEBER_ID = #{memberId}
+		WHERE MEMBER_ID = #{memberId}
 	</select>
 		
 

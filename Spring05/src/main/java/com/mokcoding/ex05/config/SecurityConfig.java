@@ -6,14 +6,23 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.mokcoding.ex05.security.CustomUserDetailsService;
 
 // Spring Security의 설정을 정의하는 클래스
 // WebSecurityConfigurerAdapter를 상속하여 보안 기능을 구성
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	// 비밀번호 암호화를 위한 BCryptPasswordEncoder를 빈으로 생성
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
  
 	// HttpSecurity 객체를 통해 HTTP 보안 기능을 구성
 	@Override
@@ -49,20 +58,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// AuthenticationManagerBuilder 객체를 통해 인증 기능을 구성
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication() // 애플리케이션 메모리에 사용자 정보 저장
-//		 user : member1, password : 1234, role : MEMBER
-		.withUser("member1").password("{noop}1234").roles("MEMBER")
-//		 user : admin1, password : 1234, role : ADMIN
-		.and().withUser("admin1").password("{noop}1234").roles("ADMIN");
-		
-		// noop : 암호 인코딩을 설정하지 않음을 의미
-
+		auth.userDetailsService(userDetailsService());
 	}
 	
+    // 사용자 정의 로그인 클래스인 CustomUserDetialsService를 빈으로 생성
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    public UserDetailsService userDetailsService() {
+    	return new CustomUserDetailsService();
     }
-	
 
 }

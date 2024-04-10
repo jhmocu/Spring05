@@ -39,7 +39,7 @@ public class MemberMapperTest {
 		
 		MemberRole role1 = new MemberRole();
 		role1.setMemberId(member1.getMemberId());
-		role1.setRoleName("MEMBER");
+		role1.setRoleName("ROLE_MEMBER");
 		log.info(memberMapper.insertMemberRole(role1) + "행 등록");
 		
 		Member member2 = new Member();
@@ -51,7 +51,7 @@ public class MemberMapperTest {
 		
 		MemberRole role2 = new MemberRole();
 		role2.setMemberId(member2.getMemberId());
-		role2.setRoleName("ADMIN");
+		role2.setRoleName("ROLE_ADMIN");
 		log.info(memberMapper.insertMemberRole(role2) + "행 등록");
 	}
 	
