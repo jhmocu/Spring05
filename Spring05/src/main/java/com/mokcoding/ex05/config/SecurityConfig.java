@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(userDetailsService());
 	}
 	
-    // 사용자 정의 로그인 클래스인 CustomUserDetialsService를 빈으로 생성
+    // 사용자 정의 로그인 클래스인 CustomUserDetailsService를 빈으로 생성
     @Bean
     public UserDetailsService userDetailsService() {
     	return new CustomUserDetailsService();

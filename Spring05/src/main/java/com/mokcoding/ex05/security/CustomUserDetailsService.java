@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import com.mokcoding.ex05.domain.CustomUser;
 import com.mokcoding.ex05.domain.Member;
 import com.mokcoding.ex05.domain.MemberRole;
 import com.mokcoding.ex05.persistence.MemberMapper;
@@ -44,7 +45,11 @@ public class CustomUserDetailsService implements UserDetailsService {
         authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
         
         // UserDetails 객체를 생성하여 회원 정보와 역할 정보를 담아 반환
-        UserDetails userDetails = new User(member.getMemberName(), member.getMemberPw(), authorities);
+        UserDetails userDetails = new CustomUser(member.getMemberId(), 
+								        		member.getMemberPw(),
+								        		member.getMemberName(), 
+								        		member.getRegDate(), 
+								        		authorities);
         return userDetails;
     }
 
