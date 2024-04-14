@@ -1,38 +1,28 @@
 package com.mokcoding.ex05.domain;
 
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 
-@Getter 
-@Setter
-@ToString 
-public class CustomUser extends User {
+@Getter
+public class CustomUser extends User { // User 클래스 상속
 	
-	private String memberId;
-	private String memberPw;
-	private String memberName;
-	private Date regDate;
-	
-	public CustomUser(String memberId, 
-					 String memberPw,
-					 String memberName, 
-					 Date regDate, 
+	private Member member;
+	public CustomUser(Member member, 
 					 Collection<? extends GrantedAuthority> authorities) {
-		super(memberId, memberPw, authorities);
+		// Collection<? extends GrantedAuthority> authorities : 
+		//  권한 정보를 저장하는 Collection
 		
-		this.memberId = memberId;
-		this.memberPw = memberPw;
-		this.memberName = memberName;
-		this.regDate = regDate;
+		// User 클래스 생성자에 username, password, authorities를 적용
+		// 인증 및 권한 확인에 필요한 정보
+		super(member.getMemberId(), member.getMemberPw(), authorities);
 		
+		// 전송된 member 객체 적용
+		this.member = member;
 	}
 
 }

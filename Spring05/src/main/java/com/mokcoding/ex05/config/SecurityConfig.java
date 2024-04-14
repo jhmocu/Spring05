@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.mokcoding.ex05.security.CustomUserDetailsService;
+import com.mokcoding.ex05.service.CustomUserDetailsService;
 
 // Spring Security의 설정을 정의하는 클래스
 // WebSecurityConfigurerAdapter를 상속하여 보안 기능을 구성
@@ -24,6 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
  
+    
 	// HttpSecurity 객체를 통해 HTTP 보안 기능을 구성
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
